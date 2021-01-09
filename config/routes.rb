@@ -1,3 +1,19 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :users, except: [:new, :show, :index]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :lists
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :msas, only: [:show]
+    end
+  end
 end
