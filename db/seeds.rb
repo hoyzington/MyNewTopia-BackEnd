@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+CSV.foreach('msa_sample.csv') do |msa|
+  Msa.create(
+    msa_code: msa[0].to_i,
+    name: msa[1].split(',')[0],
+    states: msa[2..5].compact.join(', '),
+    time_zone: msa[6],
+    pop: msa[7].split(',').join.to_i,
+    med_hr_wg: msa[9].to_f,
+    unemp: msa[8].to_f,
+    heat: msa[10].to_i,
+    cold: msa[11].to_f,
+    precip: msa[12].to_f,
+    snow: msa[13].to_f,
+    aqi: msa[14].to_f
+  )
+end
