@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :msas, only: [:show]
+      get 'metro-areas/:msa_code', to: 'msas#show'
+      get 'metro-areas', to: 'msas#index'
     end
   end
 end
