@@ -1,3 +1,27 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # root 'pages#home'
+  # get 'signup', to: 'users#new'
+  # get 'login', to: 'sessions#new'
+  # post 'login', to: 'sessions#create'
+  # get '/auth/facebook/callback', to: 'sessions#omniauth'
+  # delete 'logout', to: 'sessions#destroy'
+
+  namespace :api do
+    namespace :v1 do
+      resources :users, except: [:new, :show, :index]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :lists, except: [:new]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      get 'metro-areas/:msa_code', to: 'msas#show'
+      get 'metro-areas', to: 'msas#index'
+    end
+  end
 end
