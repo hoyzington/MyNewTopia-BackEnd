@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_055011) do
+ActiveRecord::Schema.define(version: 2021_01_22_215914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2021_01_08_055011) do
   end
 
   create_table "msas", force: :cascade do |t|
-    t.integer "msa_code"
+    t.integer "code"
     t.string "name"
-    t.string "time_zone"
+    t.string "zone"
     t.integer "pop"
-    t.float "med_hr_wg"
+    t.float "wage"
     t.float "unemp"
     t.integer "heat"
     t.float "cold"

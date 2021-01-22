@@ -6,21 +6,20 @@ Rails.application.routes.draw do
   # get '/auth/facebook/callback', to: 'sessions#omniauth'
   # delete 'logout', to: 'sessions#destroy'
 
-  namespace :api do
-    namespace :v1 do
-      resources :users, except: [:new, :show, :index]
-    end
-  end
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :users, except: [:new, :show, :index]
+  #   end
+  # end
+
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :lists, except: [:new]
+  #   end
+  # end
 
   namespace :api do
     namespace :v1 do
-      resources :lists, except: [:new]
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      get 'metro-areas/:msa_code', to: 'msas#show'
       get 'metro-areas', to: 'msas#index'
     end
   end
