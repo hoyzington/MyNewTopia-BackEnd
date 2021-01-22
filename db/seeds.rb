@@ -2,12 +2,12 @@ require 'csv'
 
 CSV.foreach('msa_sample.csv') do |msa|
   Msa.create(
-    msa_code: msa[0].to_i,
+    code: msa[0].to_i,
     name: msa[1].split(',')[0],
     states: msa[2..5].compact.join(', '),
-    time_zone: msa[6],
+    zone: msa[6],
     pop: msa[7].split(',').join.to_i,
-    med_hr_wg: msa[9].to_f,
+    wage: msa[9].to_f,
     unemp: msa[8].to_f,
     heat: msa[10].to_i,
     cold: msa[11].to_f,
