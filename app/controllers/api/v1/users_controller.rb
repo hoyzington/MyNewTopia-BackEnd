@@ -1,6 +1,5 @@
-class Api::V1::UserController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   before_action :set_user, except: [:create]
-  # has_secure_password
 
   def show
     render json: [user, user.lists], status: :accepted
@@ -9,23 +8,23 @@ class Api::V1::UserController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: user, only: [:id, :username], status: :accepted
+      render json: user, only: [:id, :username], status: :created
     else
-      present_errors_and_status
+      render json: { errors: user.errors.full_messages }, status: :not_acceptable
     end
   end
 
   def update
     if user.update(user_params)
-      render json: [user, user.msas], status: :accepted
+      render json: [user, user.msas], status: :updated
     else
-      present_errors_and_status
+      render json: { errors: user.errors.full_messages }, status: :not_acceptable
     end
   end
 
   def destroy
     user.destroy
-    render json: {userId: user.id}
+    render json: {userId: user.id}, status: :destroyed
   end
 
   private
@@ -35,6 +34,6 @@ class Api::V1::UserController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :demands)
+    params.require(:user).permit(:username, :password)
   end
 end
