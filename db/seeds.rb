@@ -1,6 +1,6 @@
 require 'csv'
 
-CSV.foreach('msa_sample.csv') do |msa|
+CSV.foreach('MSAs.csv') do |msa|
   Msa.create(
     code: msa[0].to_i,
     name: msa[1].split(',')[0],
