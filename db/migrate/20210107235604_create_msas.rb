@@ -1,11 +1,12 @@
 class CreateMsas < ActiveRecord::Migration[6.0]
   def change
     create_table :msas do |t|
-      t.integer :msa_code
+      t.integer :code
       t.string :name
-      t.string :time_zone
+      t.string :states
+      t.string :zone
       t.integer :pop
-      t.float :med_hr_wg
+      t.float :wage
       t.float :unemp
       t.integer :heat
       t.float :cold
