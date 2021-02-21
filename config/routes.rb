@@ -6,11 +6,12 @@ Rails.application.routes.draw do
     end
   end
 
-  # namespace :api do
-  #   namespace :v1 do
-  #     resources :lists, except: [:new]
-  #   end
-  # end
+  namespace :api do
+    namespace :v1 do
+      resources :filters, only: [:destroy]
+      post 'users/:user_id/filters', to: 'filters#create'
+    end
+  end
 
   namespace :api do
     namespace :v1 do
