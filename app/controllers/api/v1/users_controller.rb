@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     # byebug
     user = User.find_by(username: params[:user][:username])
     if user && user.authenticate(params[:user][:password])
-      render json: { id: user.id, username: user.username, lists: user.lists}, status: :accepted
+      render json: { id: user.id, username: user.username, filters: user.filters}, status: :accepted
     else
       render json: { message: "Incorrect username and/or password" }
     end

@@ -21,7 +21,7 @@ class Api::V1::FiltersController < ApplicationController
   end
 
   def update
-    if @ filter.update(filter_params)
+    if @filter.update(filter_params)
       render_filter
     else
       present_errors_and_status
@@ -29,14 +29,13 @@ class Api::V1::FiltersController < ApplicationController
   end
 
   def destroy
-    @ filter.destroy
-    render json: { filterId: @ filter.id }
+    @filter.destroy
+    render json: { id: @filter.id }
   end
-
   private
 
   def set_filter
-    @ filter = Filter.find(params[:id])
+    @filter = Filter.find(params[:id])
   end
 
   def filter_params
@@ -44,10 +43,10 @@ class Api::V1::FiltersController < ApplicationController
   end
 
   def present_errors_and_status
-    render json: { errors: @ filter.errors.full_messages }, status: :unprocessible_entity
+    render json: { errors: @filter.errors.full_messages }, status: :unprocessible_entity
   end
 
   def render_filter
-    render json: @ filter, except: [:updated_at], status: :accepted
+    render json: @filter, except: [:updated_at], status: :accepted
   end
 end
