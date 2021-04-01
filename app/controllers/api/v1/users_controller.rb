@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, except: [:create]
+  # before_action :set_user, except: [:create]
 
   def show
     # byebug
@@ -35,9 +35,9 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-  def set_user
-    user = User.find_by(username: params[:username])
-  end
+  # def set_user
+  #   user = User.find_by(username: params[:username])
+  # end
 
   def user_params
     params.require(:user).permit(:username, :password)
