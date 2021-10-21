@@ -11,7 +11,7 @@ module Api
         if user&.authenticate(params[:user][:password])
           render json: { id: user.id, username: user.username, filters: user.filters }, status: :accepted
         else
-          render json: { message: 'Incorrect username and/or password' }
+          render json: { errors: ['Incorrect username and/or password'] }
         end
       end
 
@@ -20,7 +20,7 @@ module Api
         if user.save
           render json: { id: user.id, username: user.username, filters: [] }, status: :created
         else
-          render json: { errors: user.errors.full_messages }, status: :not_acceptable
+          render json: { errors: user.errors.full_messages }
         end
       end
 
