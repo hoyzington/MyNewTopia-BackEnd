@@ -44,7 +44,7 @@ module Api
       end
 
       def filter_params
-        params.require(:filter).permit(:id, :name, :items, :vals)
+        params.require(:filter).permit(:id, :name, :choices, :vals)
       end
 
       def present_errors_and_status
